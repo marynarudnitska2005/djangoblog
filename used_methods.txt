@@ -79,3 +79,10 @@ post = Post.objects.get(title="Sample title")
 
 Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')  
 Повертає всі об'єкти моделі `Post`, у яких поле `published_date` менше або дорівнює поточному часу, відсортовані за зростанням значень поля `published_date`.  
+
+--- TAKS 3 ---
+admin.site.register(Post)  
+Реєструє модель `Post` в адміністративній панелі Django, щоб її можна було переглядати та редагувати через інтерфейс адміністратора.  
+
+python manage.py createsuperuser  
+Створює обліковий запис суперкористувача для доступу до адміністративної панелі Django.  
