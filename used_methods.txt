@@ -33,3 +33,14 @@ print('How are you?')
 
 hi()
 Призначення: Викликає функцію hi, яка виводить два рядки тексту: 'Hi there!' і 'How are you?'.
+
+--- TAKS 2 ---
+
+python manage.py startapp blog  
+Створює новий додаток (app) з назвою `blog` у Django-проєкті.
+
+python manage.py makemigrations blog  
+Генерує файл міграцій для моделі додатка `blog`, щоб зафіксувати зміни в структурі бази даних.
+
+python manage.py migrate blog 
+Застосовує міграції для додатка `blog`, оновлюючи структуру бази даних відповідно до змін у моделях.
