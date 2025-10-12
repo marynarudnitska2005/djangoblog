@@ -1,3 +1,5 @@
+--- TASK 1 ---
+
 "tnpu".upper()
 Призначення: Перетворює всі літери в рядку на великі. Результат виконання цього коду - вивід рядка TNPU.
 
@@ -44,3 +46,36 @@ python manage.py makemigrations blog
 
 python manage.py migrate blog 
 Застосовує міграції для додатка `blog`, оновлюючи структуру бази даних відповідно до змін у моделях.
+
+from blog.models import Post  
+Імпортує модель `Post` з додатка `blog` для роботи з нею.  
+
+Post.objects.all()  
+Повертає всі об'єкти моделі `Post`, які зберігаються в базі даних.  
+
+Post.objects.create(author=me, title='Sample title', text='Test')  
+Створює новий об'єкт моделі `Post` з вказаними значеннями для полів `author`, `title` і `text`, і зберігає його в базі даних.  
+
+from django.contrib.auth.models import User  
+Імпортує модель `User` з вбудованої системи аутентифікації Django для роботи з користувачами.  
+
+User.objects.all()  
+Повертає всі об'єкти моделі `User`, які зберігаються в базі даних.  
+
+Post.objects.filter(author=me)  
+Повертає всі об'єкти моделі `Post`, у яких поле `author` відповідає значенню змінної `me`.  
+
+post.publish()  
+Викликає метод `publish` для об'єкта `post`, який, ймовірно, публікує пост (залежить від реалізації методу).  
+
+>>> from django.utils import timezone  
+Імпортує модуль `timezone` з Django для роботи з часовими зонами.  
+
+>>> Post.objects.filter(published_date__lte=timezone.now())  
+Повертає всі об'єкти моделі `Post`, у яких поле `published_date` менше або дорівнює поточному часу.  
+
+post = Post.objects.get(title="Sample title")  
+Повертає об'єкт моделі `Post`, у якого поле `title` дорівнює `"Sample title"`. Якщо такого об'єкта немає, буде помилка.  
+
+Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')  
+Повертає всі об'єкти моделі `Post`, у яких поле `published_date` менше або дорівнює поточному часу, відсортовані за зростанням значень поля `published_date`.  
