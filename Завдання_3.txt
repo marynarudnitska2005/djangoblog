@@ -1,0 +1,50 @@
+from django.contrib import admin  
+Імпортує модуль адміністративної панелі Django.  
+
+from .models import Post  
+Імпортує модель Post з поточного додатка.  
+
+admin.site.register(Post)  
+Реєструє модель Post в адміністративній панелі Django.  
+
+$ git init  
+Ініціалізує порожній Git-репозиторій у поточній директорії.  
+
+$ git config --global user.name "Your Name"  
+Встановлює глобальне ім'я користувача для комітів у Git.  
+
+$ git config --global user.email you@example.com  
+Встановлює глобальну електронну пошту користувача для комітів у Git.  
+
+$ git add --all .  
+Додає всі файли та зміни в поточній директорії до індексації для наступного коміту.  
+
+$ git commit -m "My Django Girls app, first commit"  
+Фіксує зміни в репозиторії з повідомленням "My Django Girls app, first commit".  
+
+$ git remote add origin https://github.com/<ваше-github-ім'я>/my-first-blog.git  
+Додає віддалений репозиторій з назвою origin за вказаною URL-адресою.  
+
+$ git push -u origin master  
+Відправляє зміни з локальної гілки master до віддаленого репозиторію origin.  
+
+$ git clone https://github.com/<ваше-github-ім'я>/my-first-blog.git  
+Клонує віддалений репозиторій за вказаною URL-адресою в локальну директорію.  
+
+$ tree my-first-blog  
+Відображає дерево файлів і папок у директорії my-first-blog.  
+
+$ python manage.py collectstatic  
+Збирає всі статичні файли проєкту в директорію, вказану в STATIC_ROOT.  
+
+url(r'', include('blog.urls'))  
+Підключає маршрути з файлу blog.urls до основного файлу маршрутизації проєкту.  
+
+urlpatterns = [  
+    url(r'^$', views.post_list, name='post_list'),  
+]  
+Визначає список маршрутів, де головна сторінка проєкту перенаправляється до функції post_list.  
+
+def post_list(request):  
+    return render(request, 'blog/post_list.html', {})  
+Визначає функцію представлення, яка повертає HTML-сторінку blog/post_list.html у відповідь на запит.  
