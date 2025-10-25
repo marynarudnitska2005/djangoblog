@@ -1,0 +1,56 @@
+from django.shortcuts import render  
+Імпортує функцію render для відображення HTML-шаблонів.  
+
+def post_list(request):  
+Визначає функцію представлення, яка повертає шаблон post_list.html.  
+
+{{ posts }}  
+Відображає змінну posts у шаблоні.  
+
+{% for post in posts %}  
+Починає цикл для перебору об'єктів у змінній posts.  
+
+{{ post }}  
+Відображає поточний об'єкт у циклі.  
+
+{% endfor %}  
+Завершує цикл у шаблоні.  
+
+|linebreaksbr  
+Фільтр, який замінює символи нового рядка на тег <br>.  
+
+{% load static %}  
+Завантажує теги для роботи зі статичними файлами.  
+
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">  
+Підключає CSS-файл blog.css зі статичних файлів.  
+
+<div class="post">  
+Створює HTML-блок для відображення поста.  
+
+<p>published: {{ post.published_date }}</p>  
+Відображає дату публікації поста.  
+
+<h1><a href="">{{ post.title }}</a></h1>  
+Відображає заголовок поста як посилання.  
+
+<p>{{ post.text|linebreaksbr }}</p>  
+Відображає текст поста з фільтром linebreaksbr.  
+
+{% block content %}  
+Починає блок контенту для розширення в дочірніх шаблонах.  
+
+{% endblock %}  
+Завершує блок контенту.  
+
+{% extends 'blog/base.html' %}  
+Розширює шаблон base.html.  
+
+<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>  
+Створює посилання на деталі поста за допомогою URL з іменем post_detail.  
+
+Post.objects.get(pk=pk)  
+Отримує об'єкт Post за первинним ключем pk.  
+
+post = get_object_or_404(Post, pk=pk)  
+Отримує об'єкт Post за первинним ключем pk або повертає сторінку 404, якщо об'єкт не знайдено.  
