@@ -1,0 +1,65 @@
+from django import forms  
+Імпортує модуль forms для створення форм у Django  
+
+from .models import Post  
+Імпортує модель Post з поточного додатка  
+
+class PostForm(forms.ModelForm):  
+Оголошує клас форми PostForm на основі моделі Post  
+
+class Meta:  
+Визначає метаінформацію для форми  
+
+model = Post  
+Вказує модель Post як основу для форми  
+
+fields = ('title', 'text')  
+Визначає поля моделі, які будуть включені у форму  
+
+<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>  
+Створює посилання на сторінку створення нового поста з класом top-menu  
+
+url(r'^post/new/$', views.post_new, name='post_new')  
+Визначає маршрут для сторінки створення нового поста з іменем post_new  
+
+from .forms import PostForm  
+Імпортує форму PostForm з поточного додатка  
+
+def post_new(request):  
+Визначає функцію представлення для створення нового поста  
+
+form = PostForm()  
+Створює екземпляр форми PostForm  
+
+return render(request, 'blog/post_edit.html', {'form': form})  
+Повертає шаблон post_edit.html з переданою формою  
+
+{% csrf_token %}  
+Додає токен CSRF для захисту від атак  
+
+{{ form.as_p }}  
+Відображає форму у вигляді абзаців  
+
+from django.shortcuts import redirect  
+Імпортує функцію redirect для перенаправлення  
+
+return redirect('post_detail', pk=post.pk)  
+Перенаправляє на сторінку деталей поста з первинним ключем pk  
+
+<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>  
+Створює посилання на сторінку редагування поста з класом btn btn-default  
+
+url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit')  
+Визначає маршрут для сторінки редагування поста з іменем post_edit  
+
+form = PostForm(request.POST, instance=post)  
+Створює форму PostForm з даними POST для редагування існуючого поста  
+
+{% if user.is_authenticated %}  
+Перевіряє, чи користувач аутентифікований  
+
+<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>  
+Відображає посилання на створення нового поста, якщо користувач аутентифікований  
+
+<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>  
+Відображає посилання на редагування поста, якщо користувач аутентифікований  
