@@ -1,6 +1,7 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 
 urlpatterns = [
-    path('blog/', views.post_list, name='post_list'),
+    re_path(r'^$', views.post_list, name='post_list'),
+    re_path(r'^post/(?P<pk>[0-9]+)/$', views.post_detail, name='post_detail'),
 ]
